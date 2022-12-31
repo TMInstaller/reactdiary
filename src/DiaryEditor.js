@@ -18,7 +18,10 @@ const DiaryEditor = () => {
                     name="author"
                     value={author} 
                     onChange={(e)=>{
-                        setAuthor(e.target.value);
+                        setState({
+                            author:e.target.value,
+                            content: state.content,
+                        });
                     }}
                 />
             </div>
@@ -26,7 +29,10 @@ const DiaryEditor = () => {
                 <textarea
                     value={content} 
                     onChange={(e)=>{
-                        setContent(e.target.value);
+                        setState({
+                            author:e.target.value,
+                            content: state.author,
+                        });
                     }} 
                 />
             </div>
