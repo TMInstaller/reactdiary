@@ -16,7 +16,7 @@ const DiaryEditor = () => {
             <div>
                 <input
                     name="author"
-                    value={author} 
+                    value={state.author} 
                     onChange={(e)=>{
                         setState({
                             author:e.target.value,
@@ -27,7 +27,7 @@ const DiaryEditor = () => {
             </div>
             <div>
                 <textarea
-                    value={content} 
+                    value={state.content} 
                     onChange={(e)=>{
                         setState({
                             author:e.target.value,
