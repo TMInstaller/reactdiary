@@ -1,7 +1,6 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
-const DiaryEditor = ({onCreate}) => {
-
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -16,23 +15,26 @@ const DiaryEditor = ({onCreate}) => {
       ...state,
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   const handleSubmit = () => {
-    if(state.author.length < 1){
-      // focus
+    if (state.author.length < 1) {
       authorInput.current.focus();
       return;
     }
 
-    if(state.content.length < 5){
-      // focus
+    if (state.content.length < 5) {
       contentInput.current.focus();
       return;
     }
 
     onCreate(state.author, state.content, state.emotion);
-    alert("Save Success");
+    alert("저장 성공");
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (
@@ -41,22 +43,30 @@ const DiaryEditor = ({onCreate}) => {
       <div>
         <input
           ref={authorInput}
-          name="author"
           value={state.author}
           onChange={handleChangeState}
+          name="author"
+          placeholder="작성자"
+          type="text"
         />
       </div>
       <div>
         <textarea
           ref={contentInput}
-          name="content"
           value={state.content}
           onChange={handleChangeState}
+          name="content"
+          placeholder="일기"
+          type="text"
         />
       </div>
       <div>
-        오늘의 감정점수 : 
-        <select name="emotion" value={state.emotion} onChange={handleChangeState}>
+        <span>오늘의 감정점수 : </span>
+        <select
+          name="emotion"
+          value={state.emotion}
+          onChange={handleChangeState}
+        >
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -65,10 +75,9 @@ const DiaryEditor = ({onCreate}) => {
         </select>
       </div>
       <div>
-        <button onClick={handleSubmit}>Save Diary</button>
+        <button onClick={handleSubmit}>일기 저장하기</button>
       </div>
     </div>
   );
 };
-
 export default DiaryEditor;
