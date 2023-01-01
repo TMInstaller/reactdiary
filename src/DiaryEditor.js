@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({onCreate}) => {
 
   const authorInput = useRef();
   const contentInput = useRef();
@@ -31,6 +31,7 @@ const DiaryEditor = () => {
       return;
     }
 
+    onCreate(state.author, state.content, state.emotion);
     alert("Save Success");
   };
 
